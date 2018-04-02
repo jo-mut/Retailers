@@ -1,6 +1,7 @@
 package com.app.retailers.api.yelp.retailers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class RetailsRecyclerAdapter extends RecyclerView.Adapter
     private static final int MAX_HEIGHT = 200;
 
     private ArrayList<Retailer> mRetailers = new ArrayList<>();
+    private Retailer retailer;
     private Context mContext;
 
     public RetailsRecyclerAdapter(Context context, ArrayList<Retailer> retailers) {
@@ -52,17 +56,19 @@ public class RetailsRecyclerAdapter extends RecyclerView.Adapter
         return mRetailers.size();
     }
 
-    public class RetailerViewHolder extends RecyclerView.ViewHolder{
+    public class RetailerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @Bind(R.id.retailerNameTextView)TextView mRetailerNameTextView;
         @Bind(R.id.categoryTextView)TextView mCategoryTextView;
         @Bind(R.id.ratingTextView)TextView mRatingTextView;
         @Bind(R.id.retailerImageView)ImageView mRetailerImageView;
         private Context mContext;
 
+
         public RetailerViewHolder(View itemView) {
             super(itemView);
-            this.mContext =itemView.getContext();
             ButterKnife.bind(this, itemView);
+            mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindRetailers(Retailer retailer){
@@ -77,5 +83,15 @@ public class RetailsRecyclerAdapter extends RecyclerView.Adapter
             mRatingTextView.setText("Rating" + retailer.getRating() + "/5");
 
         }
+
+        @Override
+        public void onClick(View v){
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, RetailerDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("retailers", Parcels.wrap(mRetailers));
+            mContext.startActivity(intent);
+        }
+
     }
 }

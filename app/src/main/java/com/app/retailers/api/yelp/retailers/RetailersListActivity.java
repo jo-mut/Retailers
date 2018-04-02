@@ -113,30 +113,5 @@ public class RetailersListActivity extends AppCompatActivity {
             }
         });
 
-//        final YelpService yelpService = new YelpService();
-//        yelpService.findRetailers(location, new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                retailers = yelpService.processResults(response);
-//                RetailersListActivity.this.runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        retailsRecyclerAdapter = new RetailsRecyclerAdapter(getApplicationContext(), retailers);
-//                        mRetailersRecyclerView.setAdapter(retailsRecyclerAdapter);
-//                        RecyclerView.LayoutManager layoutManager =
-//                                new LinearLayoutManager(RetailersListActivity.this);
-//                        mRetailersRecyclerView.setLayoutManager(layoutManager);
-//                        mRetailersRecyclerView.setHasFixedSize(true);
-//
-//                    }
-//                });
-//            }
-//        });
-
     }
 }

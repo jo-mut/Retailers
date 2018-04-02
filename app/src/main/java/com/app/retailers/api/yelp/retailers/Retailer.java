@@ -1,11 +1,13 @@
 package com.app.retailers.api.yelp.retailers;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by J.EL on 10/11/2017.
  */
-
+@Parcel
 public class Retailer {
     private String mName;
     private String mPhone;
@@ -17,9 +19,12 @@ public class Retailer {
     private double mLongitude;
     private ArrayList<String> mCategories = new ArrayList<>();
 
+    public Retailer() {
+    }
+
     public Retailer(String name, String phone, String website,
-                      double rating, String imageUrl, ArrayList<String> address,
-                      double latitude, double longitude, ArrayList<String> categories) {
+                    double rating, String imageUrl, ArrayList<String> address,
+                    double latitude, double longitude, ArrayList<String> categories) {
         this.mName = name;
         this.mPhone = phone;
         this.mWebsite = website;
